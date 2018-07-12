@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="list">
+        <h1>List</h1>
+        <ol>
+            <li v-for="(item,idx) in list">
+                {{item}} - {{idx}}
+            </li>
+        </ol>
+        <button @click="removelast">刪除最後一個</button>
+        <button @click="removefirst">刪除第一個</button>
+        <button @click="addfirst">新增第一個</button>
+        <button @click="addlast">新增最後一個</button>
+    </div>
+
+    <script>
+
+        new Vue({
+            el: `#list`,
+            data: {
+                list:[
+                    "Amy",
+                    "Berry",
+                    "Cindy"
+                ]
+            },
+            methods:{
+                //刪除最後一個
+                removelast() {
+                    this.list.pop();
+                },
+                //刪除第一個
+                removefirst() {
+                    this.list.shift();
+                },
+                //新增第一個
+                addfirst() {
+                    this.list.unshift("test");
+                },
+                //新增最後一個
+                addlast() {
+                    this.list.push("test");
+                },
+            },
+        });
+    </script>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+    <style>
+        .html {
+            user-select: none;
+        }
+
+        .board {
+            width: 310px;
+        }
+
+        .grid {
+            border: 1px solid #ddd;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 100px;
+            text-align: center;
+            vertical-align: middle;
+            font-family: Arial;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game">
+        <div class="board">
+            <div class="grid" v-for="(item,idx) in list" @click="ox(idx)">
+                {{change(item)}}
+
+            </div>
+            <div>player:{{change(player)}}</div>
+            <div>Winner:{{change(winner)}}</div>
+        </div>
+    </div>
+
+    <script>
+        var winn = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+        new Vue({
+            el: `#game`,
+            data: {
+                list: [
+                    0, 0, 0,
+                    0, 0, 0,
+                    0, 0, 0
+                ],
+                player: 1,
+                
+            },
+            computed: {
+                winner() {
+                    for (let i = 0; i < winn.length; i++) {
+                        const line = winn[i];
+                        const sum =
+                            this.list[winn[0]] +
+                            this.list[winn[1]] +
+                            this.list[winn[2]];
+                        if (sum === 3) return 1;
+                        else if (sum === -3) return -1;
+                    }
+
+                    return 0;
+                },
+
+            },
+            methods: {
+                change(num) {
+                    if (num === 1) return 'O'
+                    else if (num === -1) return 'X'
+                    else return ''
+                },
+                ox(idx) {
+                    if (this.list[idx] !== 0) {
+                        return;
+                    }
+                    if(this.winner !== 0){
+                        return;
+                    }
+                    this.list.splice(idx, 1, this.player);
+                    this.player = -this.player;
+                }
+            },
+
+        });
+    </script>
+
+
+</body>
+
+</html>

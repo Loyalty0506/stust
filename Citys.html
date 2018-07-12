@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <selector :list="cities" :change="setCity"></selecter>
+        <selector :list="areas"></selector>
+    </div>
+    <script src="./zipcode.js"></script>
+    <script>
+
+        Vue.component('selector', {
+            props: ['list', 'change'],
+            template: `
+                <select @change="change">
+                    <option v-for="item in list">
+                        {{item}}
+                    </option>
+                </select>
+            `,
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                selectedCity: '基隆市',
+                selectedArea: '',
+            },
+            computed: {
+                cities() {
+                    return Object.keys(zipcode);
+                },
+                areas() {
+                    return Object.keys(zipcode[this.selectedCity]);
+                },
+            },
+            methods: {
+                setCity(e) {
+                    this.selectedCity = e.target.value;
+                },
+                setArea(e) {
+                    this.selectedArea = e.target.value;
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

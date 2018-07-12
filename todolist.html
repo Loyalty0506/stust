@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="list">
+        <h1>TodoList</h1>
+        <input v-model="con" />
+        <button @click="add" :disabled="isEmpty">加入</button>
+        <ol>
+            <li v-for="(item,idx) in list" @click="removelsit(idx)">
+                {{item}} - {{idx}}
+            </li>
+        </ol>
+
+    </div>
+
+    <script>
+
+        new Vue({
+            el: `#list`,
+            data: {
+                con: "",
+                list: []
+            },
+            computed: {
+                isEmpty() {
+                    return this.con === '';
+                },
+            },
+            methods: {
+                add() {
+
+                    this.list.push(this.con);
+                    this.con = "";
+                },
+                removelsit(idx) {
+                    this.list.splice(idx, 1);
+                },
+            },
+        });
+    </script>
+
+
+</body>
+
+</html>
