@@ -16,19 +16,41 @@
     </div>
 
     <script>
-        
+
         new Vue({
             el: `#counter`,
             data: {
                 count: 10,
-                x : 1,
+                x: 1,
             },
             methods: {
                 addcount() {
                     // this.count *= 2;
-                    
-                    this.count +=this.x;
-                    this.x+=1;
+
+                    this.count += this.x;
+                    this.x += 1;
+                },
+            },
+        });
+    </script>
+
+    <div id="counter1">
+
+        <h1 v-if="show">Hello</h1>
+        <h1 v-else>World</h1>
+        <button @click="togger">show</button>
+    </div>
+
+    <script>
+
+        new Vue({
+            el: `#counter1`,
+            data: {
+                show: true,
+            },
+            methods: {
+                togger() {
+                    this.show = !this.show;
                 },
             },
         });
