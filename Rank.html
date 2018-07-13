@@ -7,26 +7,45 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+    <style>
+    
+    .girl img{
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+    .girl {
+      height: 80px;
+      font-size: 20px;
+      line-height: 80px;
+    }
+    .girl>*{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .girl:nth-child(2n){
+      background-color: #ddd;
+    }
+  
+    </style>
 </head>
 
 <body>
     <div id="app">
-        <ul>
-            <li v-for="item in streamer">
-                {{item("userID")}}
-                
-            </li>
-        </ul>
-            
+
+        <div class="girl" v-for="item in streamers">
+            <img :src="item.picture" />
+            <label> {{item.openID}}</label>
+            <span> {{item.score}}</span>
+        </div>
+
     </div>
     <script src="./streamers.js"></script>
     <script>
 
         new Vue({
             el: '#app',
-            data: {
-                streamer:[streamers["userID"]]
-            },
+
         })
 
     </script>

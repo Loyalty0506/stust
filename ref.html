@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+  <style>
+    input{
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="inputs" v-for="(item,idx) in inputs">
+    <label>item</label>
+    <input 
+      :placeholder="item"
+      ref="inputs"
+      @Keydown.Enter="focus(idx)"
+      />
+  </div>
+
+  <script>
+    
+    const inputs = [
+      'Name',
+      'Address',
+      'Department',
+      'Wish',
+    ];
+    new Vue({
+      el: '#inputs',
+      methods:{
+        focus(idx){
+          const input = this.$refs.inputs[idx];
+          if(input){
+            input.focus();
+          }
+        },
+      },
+    });
+  
+  </script>
+</body>
+
+</html>

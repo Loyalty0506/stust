@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+  <style>
+    .alert{
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .alert-box{
+      width: 300px;
+      height: 200px;
+      background-color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="example">
+    <button @click="showAlert">Show Alert</button>
+    <div class="alert" v-if="alert" @click="cancel">
+      <div class="alert-box">
+        <h1>ALERT!</h1>
+        <button @click.stop="confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#example',
+      data:{
+        alert: false,
+      },
+      methods:{
+        showAlert(){
+          this.alert = true;
+        },
+        confirm(){
+          console.log('confirm');
+          // sendToServer('confirm')
+        },
+        cancel(){
+          console.log('cancel');
+          // sendToServer('cancel')
+          this.alert = false;
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>
