@@ -4,7 +4,9 @@
     <!-- <HelloWorld msg="Hellotest"/> -->
     <!-- <SwitchButton v-model="lightOn"/>
     <h1>{{lightOn}}</h1> -->
-    <CountryNames/>
+    <!-- <CountryNames/> -->
+    <Chat/>
+
   </div>
 </template>
 
@@ -12,14 +14,16 @@
 // import HelloWorld from "./components/HelloWorld.vue";
 //import SwitchButton from "./components/SwitchButton.vue";
 // import ck from "./components/Counter.vue";
-import CountryNames from "./components/CountryNames.vue";
+// import CountryNames from "./components/CountryNames.vue";
+import Chat from "./components/Chat.vue";
 export default {
   name: "app",
   components: {
     // HelloWorld
     // SwitchButton
     // ck
-    CountryNames
+    // CountryNames
+    Chat
   },
   // data(){
   //   return {
